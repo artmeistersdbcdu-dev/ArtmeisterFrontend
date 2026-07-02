@@ -145,7 +145,7 @@ export default function EventDetail() {
         <h1 className="text-4xl font-bold mb-4 text-red-500">
           Event Not Found
         </h1>
-        <p className="text-gray-400 mb-8 max-w-md">
+        <p className="text-muted-foreground mb-8 max-w-md">
           {getEventError?.message ||
             eventDetails?.message ||
             "The event you're looking for doesn't exist or has been removed."}
@@ -245,7 +245,7 @@ export default function EventDetail() {
                           ? "bg-blue-500/20 text-blue-400 border border-blue-500/30"
                           : eventState === "Ongoing"
                             ? "bg-green-500/20 text-green-400 border border-green-500/30"
-                            : "bg-overlay/10 text-gray-300 border border-overlay/10"
+                            : "bg-overlay/10 text-muted-foreground border border-overlay/10"
                       }`}
                     >
                       {eventState === "Upcoming"
@@ -280,13 +280,13 @@ export default function EventDetail() {
                       {isModerator && (
                         <>
                           <Link href={`/admin/events/create?id=${eventId}`}>
-                            <button className="px-6 py-3 rounded-xl bg-zinc-700 text-content font-bold text-sm md:text-base hover:bg-zinc-600 transition shadow-lg">
+                            <button className="px-6 py-3 rounded-xl bg-muted text-muted-foreground font-bold text-sm md:text-base hover:bg-muted/80 transition shadow-lg">
                               Edit Event
                             </button>
                           </Link>
                           <Link href={`/event/${eventId}/member`}>
                             <button
-                              className="px-6 py-3 rounded-xl bg-red-500 text-content font-bold text-sm md:text-base hover:bg-red-600 transition shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                              className="px-6 py-3 rounded-xl bg-red-500 text-white font-bold text-sm md:text-base hover:bg-red-600 transition shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                             >
                               Check Attendees
                             </button>
@@ -299,7 +299,7 @@ export default function EventDetail() {
                         onClick={handleEventClick}
                         disabled={disabled}
                         title={title}
-                        className="px-6 py-3 rounded-xl bg-red-500 text-content font-bold text-sm md:text-base hover:bg-red-600 transition shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="px-6 py-3 rounded-xl bg-red-500 text-white font-bold text-sm md:text-base hover:bg-red-600 transition shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                       >
                         {label}
                       </button>
@@ -328,7 +328,7 @@ export default function EventDetail() {
                             <AlertDialogCancel>Cancel</AlertDialogCancel>
                             <AlertDialogAction
                               className={
-                                "bg-red-500 text-content hover:bg-red-600"
+                                "bg-red-500 text-white hover:bg-red-600"
                               }
                               onClick={() => handleDeleteEvent()}
                             >
@@ -355,7 +355,7 @@ export default function EventDetail() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div>
-              <p className="text-gray-500 text-xs uppercase tracking-widest mb-1">
+              <p className="text-muted-foreground text-xs uppercase tracking-widest mb-1">
                 Date
               </p>
               <p className="text-content font-medium flex items-center gap-2">
@@ -367,7 +367,7 @@ export default function EventDetail() {
 
             {isFeatured && featured.location && (
               <div>
-                <p className="text-gray-500 text-xs uppercase tracking-widest mb-1">
+                <p className="text-muted-foreground text-xs uppercase tracking-widest mb-1">
                   Location
                 </p>
                 <p className="text-content font-medium flex items-center gap-2">
@@ -379,7 +379,7 @@ export default function EventDetail() {
 
             {isFeatured && featured.time && (
               <div>
-                <p className="text-gray-500 text-xs uppercase tracking-widest mb-1">
+                <p className="text-muted-foreground text-xs uppercase tracking-widest mb-1">
                   Time
                 </p>
                 <p className="text-content font-medium flex items-center gap-2">
@@ -390,7 +390,7 @@ export default function EventDetail() {
             )}
 
             <div>
-              <p className="text-gray-500 text-xs uppercase tracking-widest mb-1">
+              <p className="text-muted-foreground text-xs uppercase tracking-widest mb-1">
                 Organized by
               </p>
               <p className="text-content font-medium">{data.siteName}</p>
@@ -400,12 +400,12 @@ export default function EventDetail() {
 
         <div className="rounded-2xl p-8 md:p-10 border border-overlay/10 bg-overlay/5 backdrop-blur-md">
           <h2 className="text-2xl font-bold mb-4">About This Event</h2>
-          <p className="text-gray-300 leading-relaxed text-lg">
+          <p className="text-muted-foreground leading-relaxed text-lg">
             {event.Description?.String}
           </p>
 
           {isFeatured && (
-            <p className="text-gray-300 leading-relaxed mt-4 text-lg">
+            <p className="text-muted-foreground leading-relaxed mt-4 text-lg">
               {featured.subtitle} — Join us on{" "}
               <span className="text-red-400 font-semibold">
                 {featured.date}

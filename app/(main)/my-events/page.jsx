@@ -39,7 +39,7 @@ const MyEvent = () => {
               </span>
             </h2>
 
-            <p className="text-gray-400 text-sm text-center  md:text-md max-w-2xl font-light leading-relaxed">
+            <p className="text-muted-foreground text-sm text-center  md:text-md max-w-2xl font-light leading-relaxed">
               All the events you’ve registered for—your creative journey, neatly
               lined up like browser tabs you swear you’ll revisit.
             </p>

@@ -102,11 +102,11 @@ export const Events = () => {
                 {selectedEvent?.Name}
               </h3>
 
-              <p className="text-gray-300 mb-6">
+              <p className="text-muted-foreground mb-6">
                 {selectedEvent.Description?.String.slice(0,90)}....
               </p>
 
-              <div className="flex flex-wrap gap-6 mb-8 text-sm text-gray-300">
+              <div className="flex flex-wrap gap-6 mb-8 text-sm text-muted-foreground">
                 <div className="flex items-center gap-2">
                   <Calendar size={16} className="text-accent" />
 

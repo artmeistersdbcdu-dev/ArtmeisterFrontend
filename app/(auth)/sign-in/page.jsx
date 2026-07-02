@@ -112,7 +112,7 @@ const SignInPage = () => {
           {/* Submit Button */}
           <button
             type="submit"
-            className="animate-item w-full bg-red-800 hover:bg-red-700 text-content font-bold py-3.5 rounded-xl transition-all shadow-lg shadow-red-900/20 flex-center gap-2 group mt-2 overflow-hidden relative"
+            className="animate-item w-full bg-red-800 hover:bg-red-700 text-white font-bold py-3.5 rounded-xl transition-all shadow-lg shadow-red-900/20 flex-center gap-2 group mt-2 overflow-hidden relative"
           >
             <span className="relative z-10 flex items-center gap-2 text-sm">
               Sign In <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />

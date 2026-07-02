@@ -152,7 +152,7 @@ const ManageAccount = ({ users }) => {
         <h2 className="text-3xl font-serif text-content mb-2 tracking-wide">
           Manage Users
         </h2>
-        <p className="text-gray-400 text-sm">
+        <p className="text-muted-foreground text-sm">
           Approve, reject, promote, demote, or ban user accounts from a
           centralized control panel.
         </p>
@@ -162,7 +162,7 @@ const ManageAccount = ({ users }) => {
       <div className="flex  flex-wrap gap-2.5 pt-1">
         <Badge
           variant="outline"
-          className="px-3 py-1 bg-overlay/5 border-overlay/10 text-gray-300 text-xs font-normal gap-1.5 rounded-xl"
+          className="px-3 py-1 bg-overlay/5 border-overlay/10 text-muted-foreground text-xs font-normal gap-1.5 rounded-xl"
         >
           <Users className="w-3.5 h-3.5 text-red-500" />
           <span>Total Users:</span>
@@ -171,7 +171,7 @@ const ManageAccount = ({ users }) => {
 
         <Badge
           variant="outline"
-          className="px-3 py-1 bg-overlay/5 border-overlay/10 text-gray-300 text-xs font-normal gap-1.5 rounded-xl"
+          className="px-3 py-1 bg-overlay/5 border-overlay/10 text-muted-foreground text-xs font-normal gap-1.5 rounded-xl"
         >
           <AlertCircle className="w-3.5 h-3.5 text-red-500" />
           <span>Pending:</span>
@@ -180,7 +180,7 @@ const ManageAccount = ({ users }) => {
 
         <Badge
           variant="outline"
-          className="px-3 py-1 bg-overlay/5 border-overlay/10 text-gray-300 text-xs font-normal gap-1.5 rounded-xl"
+          className="px-3 py-1 bg-overlay/5 border-overlay/10 text-muted-foreground text-xs font-normal gap-1.5 rounded-xl"
         >
           <Ban className="w-3.5 h-3.5 text-red-500" />
           <span>Banned:</span>
@@ -191,7 +191,7 @@ const ManageAccount = ({ users }) => {
       {/* Filter and Search Bar */}
       <div className="flex flex-col md:flex-row gap-4 justify-between items-stretch md:items-center p-4 rounded-2xl border border-overlay/10 bg-overlay/5 backdrop-blur-md">
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
           <input
             type="text"
             placeholder="Search users by name or email..."
@@ -203,7 +203,7 @@ const ManageAccount = ({ users }) => {
 
         <div className="flex flex-wrap gap-3">
           <div className="flex items-center gap-2">
-            <span className="text-xs text-gray-400 hidden sm:inline">
+            <span className="text-xs text-muted-foreground hidden sm:inline">
               Role:
             </span>
             <select
@@ -221,7 +221,7 @@ const ManageAccount = ({ users }) => {
           </div>
 
           <div className="flex items-center gap-2">
-            <span className="text-xs text-gray-400 hidden sm:inline">
+            <span className="text-xs text-muted-foreground hidden sm:inline">
               Status:
             </span>
             <select
@@ -268,7 +268,7 @@ const ManageAccount = ({ users }) => {
                   className={`flex items-center gap-3 px-4 py-3 rounded-xl border transition-all text-left ${
                     selectedRole === role
                       ? "border-red-500 bg-red-500/10 text-content"
-                      : "border-overlay/10 bg-overlay/5 text-gray-300 hover:border-overlay/20 hover:bg-overlay/10"
+                      : "border-overlay/10 bg-overlay/5 text-muted-foreground hover:border-overlay/20 hover:bg-overlay/10"
                   }`}
                 >
                   <span className="text-red-400">
@@ -281,7 +281,7 @@ const ManageAccount = ({ users }) => {
               ))}
             {roleDialogUser &&
               getAssignableRoles(roleDialogUser).length === 0 && (
-                <p className="text-gray-400 text-sm text-center py-4">
+                <p className="text-muted-foreground text-sm text-center py-4">
                   No roles available to assign
                 </p>
               )}
@@ -329,7 +329,7 @@ const ManageAccount = ({ users }) => {
                 );
               default:
                 return (
-                  <Badge className="bg-gray-500/10 text-gray-400 border-gray-500/20 capitalize font-medium">
+                  <Badge className="bg-muted text-muted-foreground border-border capitalize font-medium">
                     {status}
                   </Badge>
                 );
@@ -366,7 +366,7 @@ const ManageAccount = ({ users }) => {
                     </h3>
                   </Link>
 
-                  <p className="text-sm text-gray-400">{user.Email}</p>
+                  <p className="text-sm text-muted-foreground">{user.Email}</p>
 
                   <div className="flex gap-2 flex-wrap items-center">
                     <RoleBadge role={user.Role} />
@@ -381,7 +381,7 @@ const ManageAccount = ({ users }) => {
                     <Button
                       variant="ghost"
                       size="icon"
-                      className="text-gray-400 hover:text-content hover:bg-overlay/10 rounded-full h-9 w-9"
+                      className="text-muted-foreground hover:text-content hover:bg-overlay/10 rounded-full h-9 w-9"
                     >
                       <MoreVertical className="w-5 h-5" />
                     </Button>
@@ -390,7 +390,7 @@ const ManageAccount = ({ users }) => {
                     align="end"
                     className="bg-[#181818] border border-overlay/10 text-content rounded-xl shadow-2xl p-1.5 min-w-44"
                   >
-                    <DropdownMenuLabel className="text-gray-400 text-xs px-2.5 py-1.5">
+                    <DropdownMenuLabel className="text-muted-foreground text-xs px-2.5 py-1.5">
                       Actions
                     </DropdownMenuLabel>
                     <DropdownMenuSeparator className="bg-overlay/10" />
@@ -459,7 +459,7 @@ const ManageAccount = ({ users }) => {
         })}
 
         {filteredUsers.length === 0 && (
-          <div className="text-center py-16 text-gray-500 border border-overlay/5 rounded-2xl bg-overlay/5 border-dashed">
+          <div className="text-center py-16 text-muted-foreground border border-overlay/5 rounded-2xl bg-overlay/5 border-dashed">
             No users match the search/filter criteria.
           </div>
         )}

@@ -12,7 +12,7 @@ export const ArtCard = ({ art, className = "" }) => {
             />
             <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/30 to-transparent flex flex-col justify-end p-6 opacity-80 group-hover:opacity-100 transition-opacity">
                 <h3 className='text-xl font-bold mb-1'>{art.title}</h3>
-                <p className="text-xs text-gray-400 line-clamp-2">{art.description}</p>
+                <p className="text-xs text-muted-foreground line-clamp-2">{art.description}</p>
             </div>
         </div>
     </Link>

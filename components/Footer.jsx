@@ -17,7 +17,7 @@ export const Footer = () => {
                             </div>
                             <span className="font-heading font-bold text-xl tracking-wider">{data.siteName}</span>
                         </div>
-                        <p className="text-gray-400 text-sm leading-relaxed mb-6">
+                        <p className="text-muted-foreground text-sm leading-relaxed mb-6">
                             {footer.description}
                         </p>
                         <div className="flex gap-4 justify-center">

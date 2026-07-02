@@ -22,10 +22,10 @@ export function ArtistCard({ id, name, role, img, instagram, youtube }) {
             </Link>
             <div className="px-6 pb-6 mt-auto">
                 <div className="flex gap-3">
-                    <a href={instagram} target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded border border-overlay/10 flex items-center justify-center text-gray-400 hover:text-content hover:border-accent hover:bg-accent/10 transition-colors">
+                    <a href={instagram} target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded border border-overlay/10 flex items-center justify-center text-muted-foreground hover:text-content hover:border-accent hover:bg-accent/10 transition-colors">
                         <img src="/instagram.svg" alt="Instagram" width="14" height="14" />
                     </a>
-                    <a href={youtube} target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded border border-overlay/10 flex items-center justify-center text-gray-400 hover:text-content hover:border-accent hover:bg-accent/10 transition-colors">
+                    <a href={youtube} target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded border border-overlay/10 flex items-center justify-center text-muted-foreground hover:text-content hover:border-accent hover:bg-accent/10 transition-colors">
                         <img src="/youtube.svg" alt="YouTube" width="14" height="14" />
                     </a>
                 </div>

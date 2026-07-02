@@ -106,7 +106,7 @@ const ForgotPasswordPage = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="animate-item w-full bg-red-800 hover:bg-red-700 text-content font-bold py-3.5 rounded-xl transition-all shadow-lg shadow-red-900/20 flex-center gap-2 group mt-2 overflow-hidden relative disabled:opacity-50"
+              className="animate-item w-full bg-red-800 hover:bg-red-700 text-white font-bold py-3.5 rounded-xl transition-all shadow-lg shadow-red-900/20 flex-center gap-2 group mt-2 overflow-hidden relative disabled:opacity-50"
             >
               <span className="relative z-10 flex items-center gap-2 text-sm">
                 Send Instructions{" "}
@@ -117,7 +117,7 @@ const ForgotPasswordPage = () => {
           </form>
         ) : (
           <div className="space-y-6 text-center">
-            <div className="p-4 bg-red-950/20 border border-red-800/30 rounded-2xl text-content/80 text-sm leading-relaxed">
+            <div className="p-4 bg-red-50 dark:bg-red-950/20 border border-red-300 dark:border-red-800/30 rounded-2xl text-content/80 text-sm leading-relaxed">
               If an account with that email exists, The reset Link has been sent to you. Check your spam folder as well.
             </div>
             <button

@@ -64,7 +64,7 @@ export default function Page() {
           <h1 className="text-5xl md:text-6xl font-serif">
             Admin <span className="text-red-500">Dashboard</span>
           </h1>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             Manage User accounts, and Artwork approvals from your centralized
             control panel.
           </p>
@@ -82,7 +82,7 @@ export default function Page() {
               {canAssignRoles(user) && (
                 <TabsTrigger
                   value="manage-account"
-                  className="rounded-xl w-full text-content text-sm py-3 px-4 flex items-center justify-center md:justify-start gap-2.5 transition-all data-[state=active]:bg-red-600 data-[state=active]:text-content hover:bg-overlay/5 cursor-pointer font-medium"
+                  className="rounded-xl w-full text-content text-sm py-3 px-4 flex items-center justify-center md:justify-start gap-2.5 transition-all data-[state=active]:bg-red-600 data-[state=active]:text-white hover:bg-overlay/5 cursor-pointer font-medium"
                 >
                   <Users className="w-4 h-4" />
                   <span>Accounts</span>
@@ -91,7 +91,7 @@ export default function Page() {
               {canModerate(user) && (
                 <TabsTrigger
                   value="approve-art"
-                  className="rounded-xl w-full text-content text-sm py-3 px-4 flex items-center justify-center md:justify-start gap-2.5 transition-all data-[state=active]:bg-red-600 data-[state=active]:text-content hover:bg-overlay/5 cursor-pointer font-medium"
+                  className="rounded-xl w-full text-content text-sm py-3 px-4 flex items-center justify-center md:justify-start gap-2.5 transition-all data-[state=active]:bg-red-600 data-[state=active]:text-white hover:bg-overlay/5 cursor-pointer font-medium"
                 >
                   <Palette className="w-4 h-4" />
                   <span>Artworks</span>

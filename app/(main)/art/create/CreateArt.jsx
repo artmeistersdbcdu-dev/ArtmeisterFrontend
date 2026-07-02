@@ -343,7 +343,7 @@ const CreateArt = ({ artid }) => {
             <button
               type="submit"
               disabled={isBanned || createLoading || updateLoading}
-              className="w-full bg-red-800 hover:bg-red-700 disabled:bg-zinc-700 disabled:text-zinc-400 disabled:cursor-not-allowed disabled:shadow-none text-content font-bold py-3.5 rounded-xl transition-all shadow-lg shadow-red-900/20 flex items-center justify-center gap-2 group"
+              className="w-full bg-red-800 hover:bg-red-700 disabled:bg-muted disabled:text-muted-foreground disabled:cursor-not-allowed disabled:shadow-none text-white font-bold py-3.5 rounded-xl transition-all shadow-lg shadow-red-900/20 flex items-center justify-center gap-2 group"
             >
               {createLoading || updateLoading ? (
                 <>

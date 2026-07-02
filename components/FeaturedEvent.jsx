@@ -18,9 +18,9 @@ export const FeaturedEvent = () => {
                     {event.badge}
                 </span>
                 <h3 className="font-heading font-bold text-3xl mb-2">{event.title}</h3>
-                <p className="text-gray-300 mb-6">{event.subtitle}</p>
+                <p className="text-muted-foreground mb-6">{event.subtitle}</p>
 
-                <div className="flex flex-wrap gap-6 mb-8 text-sm text-gray-300">
+                <div className="flex flex-wrap gap-6 mb-8 text-sm text-muted-foreground">
                     <div className="flex items-center gap-2"><Calendar size={16} className="text-accent" /> {event.date}</div>
                     <div className="flex items-center gap-2"><MapPin size={16} className="text-accent" /> {event.location}</div>
                     <div className="flex items-center gap-2"><Clock size={16} className="text-accent" /> {event.time}</div>

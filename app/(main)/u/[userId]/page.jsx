@@ -418,7 +418,7 @@ export default function ArtistProfile() {
                   <div className="flex items-center justify-center">
                     <Link
                       href={"/art/create"}
-                      className="flex items-center gap-2 justify-center rounded-full h-12 w-30 border bg-white font-semibold text-content text-center"
+                      className="flex items-center gap-2 justify-center rounded-full h-12 w-30 border bg-background font-semibold text-foreground text-center"
                     >
                       <Upload size={24} />
                       Upload

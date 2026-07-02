@@ -1,45 +1,52 @@
-import { PutObjectCommand } from "@aws-sdk/client-s3";
-import { s3 } from "@/lib/s3";
+import { v2 as cloudinary } from "cloudinary";
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 export async function POST(req) {
   try {
     const formData = await req.formData();
     const file = formData.get("file");
-
+    console.log("Hello Ghuhuh");
     if (!file) {
-      return Response.json(
-        { error: "No file uploaded" },
-        { status: 400 }
-      );
+      return Response.json({ error: "No file uploaded" }, { status: 400 });
     }
 
-    const buffer = Buffer.from(
-      await file.arrayBuffer()
-    );
+    const buffer = Buffer.from(await file.arrayBuffer());
 
-    const fileName = `${Date.now()}-${file.name}`;
-
-    await s3.send(
-      new PutObjectCommand({
-        Bucket: process.env.AWS_BUCKET_NAME,
-        Key: fileName,
-        Body: buffer,
-        ContentType: file.type,
-      })
-    );
-
-    const url = `https://${process.env.AWS_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/${fileName}`;
+    const result = await new Promise((resolve, reject) => {
+      cloudinary.uploader
+        .upload_stream(
+          {
+            folder: "art-club",
+            resource_type: "image",
+          },
+          (error, result) => {
+            if (error) reject(error);
+            else resolve(result);
+          },
+        )
+        .end(buffer);
+    });
 
     return Response.json({
       success: true,
-      url,
+      url: result.secure_url,
+      public_id: result.public_id,
     });
   } catch (error) {
     console.error(error);
 
     return Response.json(
-      { success: false, data: null, error: "Upload failed" },
-      { status: 500 }
+      {
+        success: false,
+        data: null,
+        error: "Upload failed",
+      },
+      { status: 500 },
     );
   }
 }

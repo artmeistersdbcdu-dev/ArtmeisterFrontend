@@ -1,7 +1,7 @@
 "use client";
 import useFetch from "@/hooks/useFetch";
 import { onBoardingSchema } from "@/schema/user";
-import { upload, uploadDummy } from "@/service/upload";
+import { upload } from "@/service/upload";
 import { updateUser } from "@/service/user";
 import { useAuthStore } from "@/store/user";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -338,7 +338,7 @@ const onboarding = () => {
           <button
             type="submit"
             disabled={updating}
-            className="w-full bg-red-800 hover:opacity-90 disabled:opacity-50 text-content font-bold py-4 rounded-xl transition-all"
+            className="w-full bg-red-800 hover:opacity-90 disabled:opacity-50 text-white font-bold py-4 rounded-xl transition-all"
           >
             {updating
               ? isEdit

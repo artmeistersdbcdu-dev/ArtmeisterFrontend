@@ -71,10 +71,16 @@ body {
 @utility radial-gradient {
   background: radial-gradient(
     circle at center,
-    #e8ecf0 0%,
-    #F0F6FA 50%,
+    color-mix(in srgb, var(--color-frosty, #000) 90%, var(--overlay) 10%) 0%,
+    var(--color-frosty) 50%,
     transparent 100%
   );
+}
+
+@utility glass {
+  background: color-mix(in srgb, var(--overlay) 5%, transparent);
+  border: 1px solid color-mix(in srgb, var(--overlay) 10%, transparent);
+  backdrop-filter: blur(12px);
 }
 
 @utility shadow-glow {

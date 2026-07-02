@@ -162,7 +162,7 @@ const SignUpPage = () => {
           <button
             type="submit"
             disabled={isSigning}
-            className="animate-item w-full bg-red-800 hover:bg-red-950 text-content font-bold py-3.5 rounded-xl transition-all shadow-lg shadow-red-900/20 flex-center gap-2 group mt-2 overflow-hidden relative"
+            className="animate-item w-full bg-red-800 hover:bg-red-950 text-white font-bold py-3.5 rounded-xl transition-all shadow-lg shadow-red-900/20 flex-center gap-2 group mt-2 overflow-hidden relative"
           >
             <span className="relative z-10 flex items-center gap-2 text-sm">
               Create Account{" "}

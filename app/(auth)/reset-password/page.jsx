@@ -62,7 +62,7 @@ const ResetPasswordForm = () => {
   if (!token) {
     return (
       <div className="space-y-4 text-center">
-        <div className="flex-center col-center gap-3 p-4 bg-red-950/20 border border-red-800/30 rounded-2xl text-content/80">
+        <div className="flex-center col-center gap-3 p-4 bg-red-50 dark:bg-red-950/20 border border-red-300 dark:border-red-800/30 rounded-2xl text-content/80">
           <AlertTriangle className="size-8 text-yellow" />
           <h2 className="font-serif text-lg text-content">Invalid Reset Link</h2>
           <p className="text-xs text-content/60">
@@ -133,7 +133,7 @@ const ResetPasswordForm = () => {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="animate-item w-full bg-red-800 hover:bg-red-700 text-content font-bold py-3.5 rounded-xl transition-all shadow-lg shadow-red-900/20 flex-center gap-2 group mt-2 overflow-hidden relative disabled:opacity-50"
+        className="animate-item w-full bg-red-800 hover:bg-red-700 text-white font-bold py-3.5 rounded-xl transition-all shadow-lg shadow-red-900/20 flex-center gap-2 group mt-2 overflow-hidden relative disabled:opacity-50"
       >
         <span className="relative z-10 flex items-center gap-2 text-sm">
           Reset Password{" "}

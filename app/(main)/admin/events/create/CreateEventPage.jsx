@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import { useParams, useRouter, useSearchParams } from "next/navigation";
+import ReactMarkdown from "react-markdown";
+import { useRouter } from "next/navigation";
 import useFetch from "@/hooks/useFetch";
 import { createEvent, getEventById, updateEvent } from "@/service/event";
 import { useForm } from "react-hook-form";
@@ -88,6 +89,7 @@ const CreateEventPage = ({ id }) => {
   const [logoFile, setLogoFile] = useState(null);
   const [bannerFile, setBannerFile] = useState(null);
 
+  const [bioTab, setBioTab] = useState("write");
   const router = useRouter();
   useEffect(() => {
     if (!user) return;
@@ -105,10 +107,12 @@ const CreateEventPage = ({ id }) => {
     register,
     handleSubmit,
     reset,
+    watch,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(eventSchema),
   });
+  const descriptionValue = watch("description");
   const eventId = id;
   const {
     data: createdEvent,
@@ -268,12 +272,49 @@ const CreateEventPage = ({ id }) => {
           <label className="text-sm font-medium text-content/80">
             Description
           </label>
-          <textarea
-            {...register("description")}
-            rows={5}
-            placeholder="Tell people about your event..."
-            className="w-full bg-overlay/5 border border-overlay/10 rounded-xl px-4 py-3 resize-none"
-          />
+
+          <div className="flex gap-1 p-1 bg-overlay/5 border border-overlay/10 rounded-t-xl">
+            <button
+              type="button"
+              onClick={() => setBioTab("write")}
+              className={`flex-1 py-2 px-4 rounded-lg text-sm font-medium transition-all ${
+                bioTab === "write"
+                  ? "bg-overlay/10 text-content"
+                  : "text-content/50 hover:text-content/80"
+              }`}
+            >
+              Write
+            </button>
+            <button
+              type="button"
+              onClick={() => setBioTab("preview")}
+              className={`flex-1 py-2 px-4 rounded-lg text-sm font-medium transition-all ${
+                bioTab === "preview"
+                  ? "bg-overlay/10 text-content"
+                  : "text-content/50 hover:text-content/80"
+              }`}
+            >
+              Preview
+            </button>
+          </div>
+
+          {bioTab === "write" ? (
+            <textarea
+              {...register("description")}
+              rows={14}
+              placeholder="Tell people about your event...&#10;&#10;You can use **markdown** for formatting:&#10;- Lists&#10;- *Italic* and **bold**&#10;- [Links](url)&#10;- Headers&#10;- And more!"
+              className="w-full bg-overlay/5 border-x border-b border-overlay/10 rounded-b-xl px-4 py-3 resize-none focus:outline-none focus:border-accent transition-all"
+            />
+          ) : (
+            <div className="w-full min-h-[336px] bg-overlay/5 border-x border-b border-overlay/10 rounded-b-xl px-4 py-3 markdown-content">
+              {descriptionValue?.trim() ? (
+                <ReactMarkdown>{descriptionValue}</ReactMarkdown>
+              ) : (
+                <p className="text-content/40">Nothing to preview yet.</p>
+              )}
+            </div>
+          )}
+
           {errors.description?.message && (
             <p className="text-red-800/50 text-sm">
               {errors.description?.message}
@@ -338,8 +379,9 @@ const CreateEventPage = ({ id }) => {
 
         <button
           type="submit"
+
           disabled={creatingEvent || isBanned}
-          className="w-full bg-red-800 hover:bg-red-700 disabled:bg-red-800/50 text-content font-bold py-3.5 rounded-xl transition-all flex items-center justify-center gap-2"
+          className="w-full bg-red-800 hover:bg-red-700 disabled:bg-red-800/50 text-white font-bold py-3.5 rounded-xl transition-all flex items-center justify-center gap-2"
         >
           {creatingEvent ? "Creating Event..." : "Create Event"}
         </button>

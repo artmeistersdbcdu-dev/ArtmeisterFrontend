@@ -67,7 +67,7 @@ export default function EventPage() {
             </span>
           </h2>
 
-          <p className="text-gray-400 text-lg md:text-2xl max-w-2xl font-light leading-relaxed">
+          <p className="text-muted-foreground text-lg md:text-2xl max-w-2xl font-light leading-relaxed">
             Discover the intersection of tradition and innovation. Join our
             curated series of events designed to inspire the next generation of
             creators.

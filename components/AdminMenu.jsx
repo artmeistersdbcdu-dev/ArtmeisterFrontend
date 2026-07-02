@@ -13,7 +13,7 @@ import Link from "next/link";
 const AdminMenu = () => {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="bg-red-900 px-3 py-1.5 rounded-lg text-content" asChild>
+      <DropdownMenuTrigger className="bg-red-900 px-3 py-1.5 rounded-lg text-white" asChild>
         <button className="flex items-center gap-1.5 text-sm bg font-semibold hover:text-red-400 transition-colors">
           <ShieldCheck size={16} />
           Admin

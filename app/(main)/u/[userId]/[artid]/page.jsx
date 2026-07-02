@@ -86,7 +86,7 @@ export default function ArtPage() {
       toast.error(error.message || "Failed to update artwork status");
     }
     if (verdict?.Success && !loading && !error) {
-      toast.success(`Artwork successfully ${verdict.Data.Status}`);
+      router.push(`/u/${userId}`);
     }
   }, [error, verdict]);
   const {
@@ -110,7 +110,6 @@ export default function ArtPage() {
     router.push(`/u/${userId}`);
   }, [deletedData, deleting]);
 
-
   if (fetchingArt) {
     return <ArtDetailSkeleton />;
   }
@@ -120,12 +119,12 @@ export default function ArtPage() {
       <main className="min-h-screen bg-frosty text-content flex items-center justify-center px-6">
         <div className="text-center max-w-md">
           <h1 className="text-4xl font-bold mb-3">Artwork Not Found</h1>
-          <p className="text-gray-400 mb-6">
+          <p className="text-muted-foreground mb-6">
             This artwork may have been removed or doesn’t exist.
           </p>
           <Link
             href="/"
-            className="inline-flex px-5 py-3 bg-red-900 rounded-xl  text-content font-semibold hover:opacity-90 transition"
+            className="inline-flex px-5 py-3 bg-red-900 rounded-xl text-white font-semibold hover:opacity-90 transition"
           >
             Go Back Home
           </Link>
@@ -139,7 +138,7 @@ export default function ArtPage() {
       <div className="max-w-7xl mx-auto">
         <Link
           href={`/u/${art?.data?.UserID}`}
-          className="inline-flex items-center gap-2 text-gray-500 hover:text-accent transition-colors group mb-8"
+          className="inline-flex items-center gap-2 text-muted-foreground hover:text-accent transition-colors group mb-8"
         >
           <MoveLeft
             size={18}
@@ -152,7 +151,6 @@ export default function ArtPage() {
           {/* LEFT SIDE - Artwork */}
           <div className="md:col-span-2 glass rounded-3xl overflow-hidden relative border border-overlay/5 group min-h-[500px] flex items-center justify-center bg-frosty/40">
             {/* Action Buttons */}
-    
 
             {/* Artwork Image */}
             <div className="md:col-span-2 glass rounded-3xl overflow-hidden relative border border-overlay/5 group min-h-[500px] bg-frosty/40">
@@ -198,7 +196,7 @@ export default function ArtPage() {
                           <AlertDialogCancel>Cancel</AlertDialogCancel>
                           <AlertDialogAction
                             onClick={handleDelete}
-                            className="bg-red-500 text-content hover:bg-red-600"
+                            className="bg-red-500 text-white hover:bg-red-600"
                           >
                             Continue
                           </AlertDialogAction>
@@ -269,7 +267,7 @@ export default function ArtPage() {
                 About the Artwork
               </h3>
 
-              <p className="text-gray-300 leading-relaxed text-base md:text-lg">
+              <p className="text-muted-foreground leading-relaxed text-base md:text-lg">
                 {art?.data?.Description?.String ||
                   "No description provided for this artwork."}
               </p>

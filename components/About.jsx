@@ -283,7 +283,7 @@ const About = () => {
       </div>
       <div className="relative z-20 flex  justify-center pt-24 pb-16">
         <Link href={"/history"}>
-          <button className="group px-8 py-4 rounded-full border border-red-800 bg-red-950/20 backdrop-blur-md text-content font-semibold flex items-center gap-3 transition-all duration-300 hover:bg-red-800 hover:border-red-600 hover:shadow-[0_0_30px_rgba(153,27,27,0.4)] cursor-pointer">
+          <button className="group px-8 py-4 rounded-full border border-red-800 bg-red-950/20 backdrop-blur-md text-white font-semibold flex items-center gap-3 transition-all duration-300 hover:bg-red-800 hover:border-red-600 hover:shadow-[0_0_30px_rgba(153,27,27,0.4)] cursor-pointer">
             <span className="font-sans text-base tracking-wide uppercase">
               View Our Whole History
             </span>

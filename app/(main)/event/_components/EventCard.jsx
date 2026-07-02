@@ -158,7 +158,7 @@ export const EventCard = ({ event, isAdmin }) => {
                 ? "bg-blue-500/20 text-blue-400 border border-blue-500/30"
                 : eventState === "Ongoing"
                   ? "bg-green-500/20 text-green-400 border border-green-500/30"
-                  : "bg-overlay/10 text-gray-300 border border-overlay/10"
+                  : "bg-overlay/10 text-muted-foreground border border-overlay/10"
             }`}
           >
             {eventState === "Upcoming"
@@ -176,7 +176,7 @@ export const EventCard = ({ event, isAdmin }) => {
           {event?.Name}
         </h3>
 
-        <p className="text-gray-400 line-clamp-2 text-base leading-relaxed font-light">
+        <p className="text-muted-foreground line-clamp-2 text-base leading-relaxed font-light">
           {event?.Description?.String}
         </p>
 

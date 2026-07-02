@@ -23,7 +23,7 @@ const Batch = () => {
         <h1 className="text-4xl font-bold mb-4 text-red-500 font-serif">
           Cohort Not Found
         </h1>
-        <p className="text-neutral-400 mb-8 max-w-md font-sans">
+        <p className="text-muted-foreground mb-8 max-w-md font-sans">
           The batch history profile you are searching for does not exist or has been archived.
         </p>
         <Link
@@ -42,7 +42,7 @@ const Batch = () => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
         <Link
           href="/history"
-          className="inline-flex items-center gap-2 text-sm text-neutral-400 hover:text-content transition-colors"
+          className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-content transition-colors"
         >
           <ArrowLeft size={16} /> Back to Timeline
         </Link>
@@ -69,7 +69,7 @@ const Batch = () => {
                   <Badge className="bg-red-950/60 border border-red-800 text-red-400 font-mono text-sm px-3 py-1 font-semibold">
                     {batch.timelineYear} Cohort
                   </Badge>
-                  <span className="text-xs text-neutral-400 flex items-center gap-1 font-sans">
+                  <span className="text-xs text-muted-foreground flex items-center gap-1 font-sans">
                     <Users size={14} className="text-neutral-500" />
                     {batch.members.length} Active Members
                   </span>
@@ -92,17 +92,17 @@ const Batch = () => {
         {/* Left Column: About & Achievements */}
         <div className="lg:col-span-7 space-y-8">
           {/* About Cohort */}
-          <div className="rounded-2xl p-6 sm:p-8 border border-overlay/10 bg-neutral-950/40 backdrop-blur-md">
+          <div className="rounded-2xl p-6 sm:p-8 border border-overlay/10 bg-overlay/5 backdrop-blur-md">
             <h2 className="text-2xl font-serif text-content mb-4">
               About This Cohort
             </h2>
-            <p className="text-neutral-300 leading-relaxed font-sans text-base sm:text-lg">
+            <p className="text-content/80 leading-relaxed font-sans text-base sm:text-lg">
               {batch.about}
             </p>
           </div>
 
           {/* Highlights & Milestones */}
-          <div className="rounded-2xl p-6 sm:p-8 border border-overlay/10 bg-neutral-950/40 backdrop-blur-md">
+          <div className="rounded-2xl p-6 sm:p-8 border border-overlay/10 bg-overlay/5 backdrop-blur-md">
             <h3 className="text-xl font-serif text-content mb-6 flex items-center gap-2">
               <Award size={20} className="text-red-500" />
               Cohort Milestones & Legacy
@@ -113,7 +113,7 @@ const Batch = () => {
                   <span className="h-5 w-5 rounded-full bg-red-950/60 border border-red-900 flex items-center justify-center text-[10px] text-red-400 font-bold shrink-0 mt-0.5">
                     {index + 1}
                   </span>
-                  <span className="text-neutral-300 text-sm sm:text-base font-sans leading-relaxed">
+                  <span className="text-content/80 text-sm sm:text-base font-sans leading-relaxed">
                     {highlight}
                   </span>
                 </li>
@@ -124,7 +124,7 @@ const Batch = () => {
 
         {/* Right Column: Member Roster Grid */}
         <div className="lg:col-span-5 space-y-6">
-          <div className="rounded-2xl p-6 border border-overlay/10 bg-neutral-950/40 backdrop-blur-md">
+          <div className="rounded-2xl p-6 border border-overlay/10 bg-overlay/5 backdrop-blur-md">
             <h3 className="text-xl font-serif text-content mb-6 flex items-center gap-2">
               <Users size={20} className="text-red-500" />
               Cohort Members
@@ -134,7 +134,7 @@ const Batch = () => {
               {batch.members.map((member, index) => (
                 <Card 
                   key={index}
-                  className="bg-neutral-900/40 border border-overlay/5 hover:border-red-950/60 hover:bg-neutral-900/60 transition-all duration-300 rounded-xl"
+                  className="bg-overlay/5 border border-overlay/5 hover:border-red-950/60 hover:bg-neutral-900/60 transition-all duration-300 rounded-xl"
                 >
                   <CardContent className="p-4 flex items-center gap-4">
                     {/* Member Avatar */}
@@ -153,7 +153,7 @@ const Batch = () => {
                       <h4 className="text-sm sm:text-base font-sans font-bold text-content truncate">
                         {member.name}
                       </h4>
-                      <p className="text-xs text-neutral-400 flex items-center gap-1.5 truncate">
+                      <p className="text-xs text-muted-foreground flex items-center gap-1.5 truncate">
                         <Briefcase size={12} className="text-neutral-500 shrink-0" />
                         {member.role}
                       </p>

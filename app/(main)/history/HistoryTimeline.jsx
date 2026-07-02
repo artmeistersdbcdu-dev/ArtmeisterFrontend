@@ -18,7 +18,7 @@ export default function HistoryTimeline({ batches }) {
         <h1 className="text-4xl sm:text-6xl md:text-7xl font-serif text-content tracking-tight leading-none">
           Legacy & Batches
         </h1>
-        <p className="text-sm sm:text-lg text-neutral-400 max-w-2xl mx-auto font-sans leading-relaxed">
+        <p className="text-sm sm:text-lg text-muted-foreground max-w-2xl mx-auto font-sans leading-relaxed">
           Traverse the timeline of Art Meisters. Each cohort brings their own unique voice, mediums, and creative masterpieces to our collective canvas.
         </p>
       </div>
@@ -43,7 +43,7 @@ export default function HistoryTimeline({ batches }) {
                 {/* Timeline Card Column */}
                 <div className="w-full md:w-[45%]">
                   <Link href={`/history/${batch.id}`} className="group block">
-                    <Card className="border border-overlay/10 bg-neutral-900/40 backdrop-blur-md overflow-hidden rounded-2xl transition-all duration-500 hover:border-red-900/50 hover:bg-neutral-900/60 hover:shadow-[0_0_30px_rgba(153,27,27,0.15)] transform group-hover:-translate-y-1.5">
+                    <Card className="border border-overlay/10 bg-overlay/5 backdrop-blur-md overflow-hidden rounded-2xl transition-all duration-500 hover:border-red-900/50 hover:bg-neutral-900/60 hover:shadow-[0_0_30px_rgba(153,27,27,0.15)] transform group-hover:-translate-y-1.5">
                       {/* Banner Image Container */}
                       <div className="relative h-48 sm:h-56 w-full overflow-hidden">
                         <div className="absolute inset-0 bg-linear-to-t from-neutral-950 via-neutral-950/30 to-transparent z-10" />
@@ -55,7 +55,7 @@ export default function HistoryTimeline({ batches }) {
                           sizes="(max-w-768px) 100vw, 50vw"
                         />
                         <div className="absolute top-4 left-4 z-20">
-                          <Badge className="bg-red-800 text-content font-mono text-sm px-3 py-1 font-semibold border-none hover:bg-red-700">
+                          <Badge className="bg-red-800 text-white font-mono text-sm px-3 py-1 font-semibold border-none hover:bg-red-700">
                             {batch.timelineYear}
                           </Badge>
                         </div>
@@ -72,7 +72,7 @@ export default function HistoryTimeline({ batches }) {
                           </p>
                         </div>
 
-                        <p className="text-sm font-sans text-neutral-400 leading-relaxed">
+                        <p className="text-sm font-sans text-muted-foreground leading-relaxed">
                           {batch.shortDesc}
                         </p>
 
@@ -97,12 +97,12 @@ export default function HistoryTimeline({ batches }) {
                                 </div>
                               ))}
                               {batch.members.length > 4 && (
-                                <div className="h-8 w-8 rounded-full bg-neutral-800 border border-neutral-950 flex items-center justify-center text-[10px] font-bold text-neutral-400">
+                                <div className="h-8 w-8 rounded-full bg-neutral-800 border border-neutral-950 flex items-center justify-center text-[10px] font-bold text-muted-foreground">
                                   +{batch.members.length - 4}
                                 </div>
                               )}
                             </div>
-                            <span className="text-xs text-neutral-400 font-sans flex items-center gap-1">
+                            <span className="text-xs text-muted-foreground font-sans flex items-center gap-1">
                               <Users size={12} className="text-neutral-500" />
                               {batch.members.length} members
                             </span>
