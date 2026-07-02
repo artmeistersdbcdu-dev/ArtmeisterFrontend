@@ -30,10 +30,10 @@ if(loading){
       <div className="flex justify-between items-end mb-12">
         <div>
           <div className="flex items-center gap-4 mb-3">
-            <span className="text-accent font-semibold tracking-widest text-sm uppercase">
+            <span className="text-content/60 font-semibold tracking-widest text-sm uppercase">
               OUR ARTISTS
             </span>
-            <div className="h-px w-12 bg-accent/50"></div>
+            <div className="h-px w-12 bg-content/20"></div>
           </div>
           <h2 className="font-heading font-bold text-4xl">Meet Our Creators</h2>
         </div>

@@ -1,6 +1,5 @@
 "use client";
-
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import data from "@/data.json";
 import Image from "next/image";
 import Link from "next/link";
@@ -52,7 +51,7 @@ export const Navbar = () => {
       <div className="flex items-center justify-between px-4 py-3">
         <Link href="/">
           <div className="flex items-center gap-3">
-            <div className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-full bg-background">
+            <div className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-full ">
               <Image
                 src="/Logo.jpeg"
                 alt="Logo"

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { getRoleDisplay } from "@/lib/roles";
+import { RoleBadge } from "./RoleBadge";
 
 export function ArtistCard({ id, name, role, img, instagram, youtube }) {
 
@@ -17,7 +17,7 @@ export function ArtistCard({ id, name, role, img, instagram, youtube }) {
                 </div>
                 <div className="p-6 flex-1 flex flex-col">
                     <h3 className="font-heading font-bold text-xl mb-1">{name}</h3>
-                    <p className="text-accent text-sm mb-3 font-medium">{getRoleDisplay(role)}</p>
+                    <RoleBadge role={role} />
                 </div>
             </Link>
             <div className="px-6 pb-6 mt-auto">
