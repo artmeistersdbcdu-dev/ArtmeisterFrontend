@@ -8,23 +8,25 @@ import useFetch from "@/hooks/useFetch";
 import { getAllCoreMemberUser } from "@/service/user";
 import { ArtistsSectionSkeleton } from "./skeletons";
 export const Artist = () => {
-  const [artists, setArtist] = useState(null);
-  const {
-    data: artistsRes,
-    loading,
-    fn: getArtists,
-  } = useFetch(getAllCoreMemberUser);
-  useEffect(() => {
-    getArtists();
-  }, []);
-  useEffect(() => {
-    if (artistsRes && artistsRes.Success) {
-      setArtist(artistsRes.Data);
-    }
-  }, [artistsRes, loading]);
-if(loading){
-  return <ArtistsSectionSkeleton/>
-}
+    const [artists, setArtist] = useState(null);
+    const {
+      data: artistsRes,
+      loading,
+      fn: getArtists,
+    } = useFetch(getAllCoreMemberUser);
+    useEffect(() => {
+      getArtists();
+    }, []);
+    useEffect(() => {
+      if (artistsRes && artistsRes.Success) {
+        setArtist(artistsRes.Data);
+      }
+    }, [artistsRes, loading]);
+  if(loading){
+    return <ArtistsSectionSkeleton/>
+  }
+
+
   return (
     <section id="artists" className="max-w-7xl mx-auto px-6 md:px-12 ">
       <div className="flex justify-between items-end mb-12">
@@ -46,8 +48,7 @@ if(loading){
             id={artist.ID}
             name={artist.Name}
             role={artist.Role}
-
-            img={artist.Image?.String||"/placeholder.png"}
+            img={artist.Image?.String || "/placeholder.png"}
             instagram={artist.SocialLinks?.instagram}
             youtube={artist.SocialLinks?.youtube}
           />
