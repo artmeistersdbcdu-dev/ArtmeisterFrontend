@@ -27,6 +27,7 @@ export default function ArtPage() {
   const router = useRouter();
   const artId = params.artid;
   const userId = params.userId;
+  const [canVisit, setCanVisit] = useState(false);
   const user = useAuthStore((state) => state.user);
   const [artist, setartist] = useState(user);
   const role = user?.ID === userId ? "artist" : user?.Role;
@@ -67,6 +68,16 @@ export default function ArtPage() {
       });
     }
   }, [res]);
+  useEffect(() => {
+    if (!art) return;
+    if (art.Status === "approved") {
+      setCanVisit(true);
+    } else {
+      if (canModerate(user)) {
+        setCanVisit(true);
+      }
+    }
+  }, [art, role]);
 
   const {
     data: verdict,
@@ -114,7 +125,7 @@ export default function ArtPage() {
     return <ArtDetailSkeleton />;
   }
 
-  if (!art) {
+  if (!art || !canVisit) {
     return (
       <main className="min-h-screen bg-frosty text-content flex items-center justify-center px-6">
         <div className="text-center max-w-md">

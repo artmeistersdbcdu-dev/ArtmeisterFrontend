@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useEffect, useState } from "react";
 import {
   DropdownMenu,
@@ -36,12 +35,10 @@ import {
 import useFetch from "@/hooks/useFetch";
 import { changeUserRoleStatus } from "@/service/admin";
 import { useAuthStore } from "@/store/user";
-import { toast } from "sonner";
 import {
   ROLES,
   ROLE_DISPLAY,
   ROLE_ORDER,
-  ROLE_WEIGHTS,
   canAssignRoles,
   getRoleWeight,
 } from "@/lib/roles";
@@ -118,6 +115,9 @@ const ManageAccount = ({ users }) => {
       setPendingUpdate(null);
     }
   }, [data, updating, pendingUpdate]);
+  useEffect(() => {
+   //api call
+  }, []);
 
   const getAssignableRoles = (targetUser) => {
     const actorWeight = getRoleWeight(currUser?.Role);

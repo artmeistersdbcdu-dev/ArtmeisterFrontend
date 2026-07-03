@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import useFetch from "@/hooks/useFetch";
 import { getAllCoreMemberUser } from "@/service/user";
 import { ArtistsSectionSkeleton } from "./skeletons";
+import { RoleBadge } from "./RoleBadge";
 export const Artist = () => {
   const [artists, setArtist] = useState(null);
   const {
@@ -22,9 +23,9 @@ export const Artist = () => {
       setArtist(artistsRes.Data);
     }
   }, [artistsRes, loading]);
-if(loading){
-  return <ArtistsSectionSkeleton/>
-}
+  if (loading) {
+    return <ArtistsSectionSkeleton />;
+  }
   return (
     <section id="artists" className="max-w-7xl mx-auto px-6 md:px-12 ">
       <div className="flex justify-between items-end mb-12">
@@ -45,12 +46,23 @@ if(loading){
             key={artist.ID}
             id={artist.ID}
             name={artist.Name}
-            role={artist.Role}
-
-            img={artist.Image?.String||"/placeholder.png"}
-            instagram={artist.SocialLinks?.instagram}
-            youtube={artist.SocialLinks?.youtube}
-          />
+            imageSrc={artist.Image?.String || "/placeholder.png"}
+            imageAlt={artist.Name}
+            actionLinks={[
+              artist.SocialLinks?.instagram && {
+                href: artist.SocialLinks.instagram,
+                iconSrc: "/instagram.svg",
+                label: "Instagram",
+              },
+              artist.SocialLinks?.youtube && {
+                href: artist.SocialLinks.youtube,
+                iconSrc: "/youtube.svg",
+                label: "YouTube",
+              },
+            ].filter(Boolean)}
+          >
+            <RoleBadge role={artist.Role} />
+          </ArtistCard>
         ))}
       </div>
     </section>

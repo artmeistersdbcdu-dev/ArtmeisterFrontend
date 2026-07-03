@@ -17,7 +17,7 @@ import { deleteArt, getAllArtistArt, getArtistProfile } from "@/service/art";
 import { toast } from "sonner";
 import { useAuthStore } from "@/store/user";
 import { changeUserRoleStatus } from "@/service/admin";
-import { canAssignRoles } from "@/lib/roles";
+import { canAssignRoles, canModerate } from "@/lib/roles";
 import { RoleBadge } from "@/components/RoleBadge";
 import ReactMarkdown from "react-markdown";
 import {
@@ -60,52 +60,6 @@ export default function ArtistProfile() {
   const hasFetchedArt = useRef(false);
   const hasFetchedProfile = useRef(false);
 
-  useEffect(() => {
-    if (!usrId || !hasHydrated) return;
-
-    if (isUserProfile) {
-      if (hasFetchedArt.current) return;
-      hasFetchedArt.current = true;
-
-      setArtist(user);
-      getArt(usrId);
-      return;
-    }
-
-    if (hasFetchedProfile.current) return;
-    hasFetchedProfile.current = true;
-    getData(usrId);
-  }, [usrId, user?.ID, hasHydrated]);
-
-  useEffect(() => {
-    if (!isUserProfile) {
-      if (fetchingData || !data) return;
-
-      if (!data.Success) {
-        toast.error(data.message);
-        return;
-      }
-
-      setArtist(data.Data.User);
-      setArtistArtworks(data.Data.Art);
-    }
-
-    if (isUserProfile) {
-      if (fetchingArtworks || !arts) return;
-
-      if (!user?.Username?.Valid || !user?.Username?.String?.trim()) {
-        router.push("/onboarding");
-        return;
-      }
-
-      if (!arts.Success) {
-        toast.error(arts.message);
-        return;
-      }
-
-      setArtistArtworks(arts.Data);
-    }
-  }, [data, arts, isUserProfile, fetchingData, fetchingArtworks]);
   const handleStatusOfUser = (status) => {
     if (!canAssignRoles(user)) {
       toast.error("You are not authorized to perform this action");
@@ -140,6 +94,57 @@ export default function ArtistProfile() {
     );
   }, [deletedData, deleting]);
 
+  useEffect(() => {
+    if (!usrId || !hasHydrated) return;
+    if (isUserProfile) {
+      if (hasFetchedArt.current) return;
+      hasFetchedArt.current = true;
+
+      setArtist(user);
+      getArt(usrId);
+      return;
+    }
+
+    if (hasFetchedProfile.current) return;
+    hasFetchedProfile.current = true;
+    getData(usrId);
+  }, [usrId, user?.ID, hasHydrated]);
+  useEffect(() => {
+    if (!isUserProfile) {
+      if (fetchingData || !data) return;
+
+      if (!data.Success) {
+        toast.error(data.message);
+        return;
+      }
+
+      setArtist(data.Data.User);
+
+      let artworks = data.Data.Art;
+
+      if (role !== "artist" && !canModerate(user)) {
+        artworks = artworks.filter((art) => art.Status === "approved");
+      }
+
+      setArtistArtworks(artworks);
+    }
+    if (isUserProfile) {
+      if (fetchingArtworks || !arts) return;
+      if (!user?.Username?.Valid || !user?.Username?.String?.trim()) {
+        router.push("/onboarding");
+        return;
+      }
+      if (!arts.Success) {
+        toast.error(arts.message);
+        return;
+      }
+      let artworks = arts.Data;
+      if (role !== "artist" && !canModerate(user)) {
+        artworks = artworks.filter((art) => art.Status === "approved");
+      }
+      setArtistArtworks(artworks);
+    }
+  }, [data, arts, isUserProfile, fetchingData, fetchingArtworks, role, user]);
   if (fetchingData || fetchingArtworks) {
     return <ProfileSkeleton />;
   }
@@ -209,25 +214,26 @@ export default function ArtistProfile() {
                     <Pencil size={18} className="text-content/80" />
                   </Link>
                 )}
-                {canAssignRoles(user) && !canAssignRoles({ Role: artist?.Role }) && (
-                  <div className="opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
-                    {artist?.Status === "approved" ? (
-                      <button
-                        onClick={() => handleStatusOfUser("banned")}
-                        className="px-4 py-2 rounded-full border border-red-400/20 bg-red-500/10 text-red-400 hover:bg-red-500/20 text-sm font-medium backdrop-blur-md"
-                      >
-                        Ban User
-                      </button>
-                    ) : (
-                      <button
-                        onClick={() => handleStatusOfUser("approved")}
-                        className="px-4 py-2 rounded-full border border-green-400/20 bg-green-500/10 text-green-400 hover:bg-green-500/20 text-sm font-medium backdrop-blur-md"
-                      >
-                        Approve User
-                      </button>
-                    )}
-                  </div>
-                )}
+                {canAssignRoles(user) &&
+                  !canAssignRoles({ Role: artist?.Role }) && (
+                    <div className="opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                      {artist?.Status === "approved" ? (
+                        <button
+                          onClick={() => handleStatusOfUser("banned")}
+                          className="px-4 py-2 rounded-full border border-red-400/20 bg-red-500/10 text-red-400 hover:bg-red-500/20 text-sm font-medium backdrop-blur-md"
+                        >
+                          Ban User
+                        </button>
+                      ) : (
+                        <button
+                          onClick={() => handleStatusOfUser("approved")}
+                          className="px-4 py-2 rounded-full border border-green-400/20 bg-green-500/10 text-green-400 hover:bg-green-500/20 text-sm font-medium backdrop-blur-md"
+                        >
+                          Approve User
+                        </button>
+                      )}
+                    </div>
+                  )}
               </div>
               <p className="mt-2 text-gray-400 text-lg font-medium">
                 {artist?.Name}
