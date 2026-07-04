@@ -10,6 +10,7 @@ const roles = {
     from: "#DC2626",
     to: "#991B1B",
     text: "#DC2626",
+    border: "#B0524F",
   },
 
   vice_president: {
@@ -17,6 +18,7 @@ const roles = {
     from: "#EA580C",
     to: "#9A3412",
     text: "#EA580C",
+    border: "#B0713F",
   },
 
   general_secretary: {
@@ -24,6 +26,7 @@ const roles = {
     from: "#2563EB",
     to: "#1E3A8A",
     text: "#3B82F6",
+    border: "#4E6FA3",
   },
 
   logistic: {
@@ -31,6 +34,7 @@ const roles = {
     from: "#059669",
     to: "#065F46",
     text: "#10B981",
+    border: "#4A8770",
   },
 
   social_media_head: {
@@ -38,6 +42,7 @@ const roles = {
     from: "#9333EA",
     to: "#6B21A8",
     text: "#A855F7",
+    border: "#8264A0",
   },
 
   content_head: {
@@ -45,6 +50,7 @@ const roles = {
     from: "#D97706",
     to: "#92400E",
     text: "#F59E0B",
+    border: "#B08850",
   },
 
   core_member: {
@@ -52,6 +58,7 @@ const roles = {
     from: "#0891B2",
     to: "#155E75",
     text: "#06B6D4",
+    border: "#4E8993",
   },
 
   member: {
@@ -59,6 +66,7 @@ const roles = {
     from: "#4B5563",
     to: "#1F2937",
     text: "#6B7280",
+    border: "#4B5563",
   },
 };
   const colourScheme = roles[role];
@@ -78,24 +86,30 @@ const roles = {
       </svg>
 
       <div className="relative flex flex-col items-center py-6 px-6 gap-6">
-        {/* Rough-edged background layer — filter applies here only */}
+        {/* Paint splash - top right */}
+        <img
+          src="brush.png"
+          alt="paint splash"
+          className="absolute -top-7  z-50 -rotate-130  right-0 w-16 h-16 pointer-events-none select-none"
+        />
+
         <div
           className="absolute inset-0 rounded-xl"
           style={{
-            background: `radial-gradient(circle, ${colourScheme.from}, ${colourScheme.to})`,
+            background: `linear-gradient( ${colourScheme.from}, ${colourScheme.to})`,
             filter: "url(#rough-edges)",
           }}
         />
 
         {/* Content layer — no filter, stays crisp */}
-        <div className="relative flex flex-col items-center gap-6 w-full">
+        <div className="relative  flex flex-col items-center gap-6 w-full">
           {/* Image + Name */}
-          <div className="relative w-64 h-56">
+          <div className="relative border-4 border-b-8  border-black w-64 h-56">
             <Image
               src={img}
               alt={name}
               fill
-              className="object-cover object-center rounded-xl"
+              className="object-cover object-center shadow-2xl  border-8 border-white "
             />
 
             <div className="absolute inset-x-0 bottom-0 translate-y-1/2 flex justify-center">
@@ -117,9 +131,15 @@ const roles = {
           </div>
 
           {/* Role */}
-          <div className="pt-6">
+          <div
+            className="mt-6 -rotate-3"
+            style={{
+              background: `radial-gradient(circle, ${colourScheme.from}, ${colourScheme.to})`,
+              // filter: "url(#rough-edges)",
+            }}
+          >
             <span
-              className="inline-block text-xl font-bold px-3 py-1 -rotate-10 uppercase tracking-wider rounded-sm"
+              className="inline-block text-xl font-bold px-3 py-1 text-center uppercase tracking-wider rounded-sm"
               style={{
                 backgroundColor: colourScheme.text,
               }}
@@ -130,25 +150,29 @@ const roles = {
 
           {/* Socials */}
           <div className="flex items-start w-full gap-4 pt-2">
-            <Link href={"/"}>
-              <Image
-                src="/instagram.svg"
-                alt="Instagram"
-                width={24}
-                height={24}
-                className="w-6 h-6"
-              />
-            </Link>
+            {instagram && (
+              <Link href={"/"}>
+                <Image
+                  src="/instagram.svg"
+                  alt="Instagram"
+                  width={24}
+                  height={24}
+                  className="w-6 h-6"
+                />
+              </Link>
+            )}
 
-            <Link href={"/"}>
-              <Image
-                src="/youtube.svg"
-                alt="YouTube"
-                width={24}
-                height={24}
-                className="w-6 h-6"
-              />
-            </Link>
+            {youtube && (
+              <Link href={"/"}>
+                <Image
+                  src="/youtube.svg"
+                  alt="YouTube"
+                  width={24}
+                  height={24}
+                  className="w-6 h-6"
+                />
+              </Link>
+            )}
           </div>
         </div>
       </div>

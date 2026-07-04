@@ -14,11 +14,11 @@ gsap.registerPlugin(ScrollTrigger, SplitText);
 export default function Home() {
     return (
         <main className="min-h-screen space-y-16 md:space-y-48 p-0 bg-frosty text-content selection:bg-accent">
-             <Navbar />
+             {/* <Navbar /> */}
             <HeroSection />
             <About />
             <Artist />
-            <Events />
+            {/* <Events /> */}
             <Footer />
         </main>
     );
