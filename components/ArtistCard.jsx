@@ -10,7 +10,7 @@ const roles = {
     from: "#DC2626",
     to: "#991B1B",
     text: "#DC2626",
-    border: "#B0524F",
+
   },
 
   vice_president: {
@@ -18,7 +18,7 @@ const roles = {
     from: "#EA580C",
     to: "#9A3412",
     text: "#EA580C",
-    border: "#B0713F",
+
   },
 
   general_secretary: {
@@ -26,7 +26,7 @@ const roles = {
     from: "#2563EB",
     to: "#1E3A8A",
     text: "#3B82F6",
-    border: "#4E6FA3",
+
   },
 
   logistic: {
@@ -34,7 +34,7 @@ const roles = {
     from: "#059669",
     to: "#065F46",
     text: "#10B981",
-    border: "#4A8770",
+
   },
 
   social_media_head: {
@@ -42,7 +42,7 @@ const roles = {
     from: "#9333EA",
     to: "#6B21A8",
     text: "#A855F7",
-    border: "#8264A0",
+
   },
 
   content_head: {
@@ -50,7 +50,7 @@ const roles = {
     from: "#D97706",
     to: "#92400E",
     text: "#F59E0B",
-    border: "#B08850",
+
   },
 
   core_member: {
@@ -58,7 +58,7 @@ const roles = {
     from: "#0891B2",
     to: "#155E75",
     text: "#06B6D4",
-    border: "#4E8993",
+
   },
 
   member: {
@@ -66,7 +66,7 @@ const roles = {
     from: "#4B5563",
     to: "#1F2937",
     text: "#6B7280",
-    border: "#4B5563",
+
   },
 };
   const colourScheme = roles[role];
@@ -85,7 +85,7 @@ const roles = {
         </filter>
       </svg>
 
-      <div className="relative flex flex-col items-center py-6 px-6 gap-6">
+      <div className="relative h-full flex flex-col items-center py-6 px-6 gap-6">
         {/* Paint splash - top right */}
         <img
           src="brush.png"
@@ -132,14 +132,14 @@ const roles = {
 
           {/* Role */}
           <div
-            className="mt-6 -rotate-3"
+            className="mt-6 -rotate-10"
             style={{
               background: `radial-gradient(circle, ${colourScheme.from}, ${colourScheme.to})`,
               // filter: "url(#rough-edges)",
             }}
           >
             <span
-              className="inline-block text-xl font-bold px-3 py-1 text-center uppercase tracking-wider rounded-sm"
+              className="inline-block text-2xl text-black font-extrabold px-3 text-center uppercase tracking-wider"
               style={{
                 backgroundColor: colourScheme.text,
               }}

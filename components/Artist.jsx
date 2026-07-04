@@ -210,17 +210,19 @@ export const Artist = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {artists?.map((artist) => (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {artists?.map((artist,index) => (
+          <div className="w-[300px] mt-7 h-[400px] " key={index}>
+
           <ArtistCard
-            key={artist.ID}
             id={artist.ID}
             name={artist.Name}
             role={artist.Role}
             img={artist.Image?.String || "/placeholder.png"}
             instagram={artist.SocialLinks?.instagram}
             youtube={artist.SocialLinks?.youtube}
-          />
+            />
+            </div>
         ))}
       </div>
     </section>
