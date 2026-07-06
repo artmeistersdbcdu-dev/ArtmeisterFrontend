@@ -51,7 +51,7 @@ export const Navbar = () => {
       <div className="flex items-center justify-between px-4 py-3">
         <Link href="/">
           <div className="flex items-center gap-3">
-            <div className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-full ">
+            <div className="flex h-12 w-12 bg-white items-center justify-center overflow-hidden rounded-full ">
               <Image
                 src="/Logo.jpeg"
                 alt="Logo"

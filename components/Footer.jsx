@@ -1,5 +1,4 @@
 import { Heart } from 'lucide-react'
-import { Send } from 'lucide-react'
 import React from 'react'
 import data from "@/data.json";
 
