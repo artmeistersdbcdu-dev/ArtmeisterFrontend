@@ -6,7 +6,15 @@ import { ArtistsSectionSkeleton } from "./skeletons";
 import useFetch from "@/hooks/useFetch";
 import { getAllCoreMemberUser } from "@/service/user";
 import { ChevronDown } from "lucide-react";
-
+const roleOrder = [
+  'president',
+  'vice_president',
+  'general_secretary',
+  'social_media_head',
+  'content_head',
+  'logistic',
+  'core_member',
+];
 export const Artist = () => {
   const [artists, setArtists] = useState([]);
   const [showAll, setShowAll] = useState(false);
@@ -20,13 +28,14 @@ export const Artist = () => {
     getArtists();
   }, []);
 
-  useEffect(() => {
-    if (artistsRes?.Success) {
-      setArtists(artistsRes.Data);
-    }
-  }, [artistsRes]);
-
-  const displayedArtists = useMemo(() => {
+useEffect(() => {
+  if (artistsRes?.Success) {
+    const sorted = [...artistsRes.Data].sort(
+      (a, b) => roleOrder.indexOf(a.Role) - roleOrder.indexOf(b.Role)
+    );
+    setArtists(sorted);
+  }
+}, [artistsRes]);  const displayedArtists = useMemo(() => {
     return showAll ? artists : artists.slice(0, 7);
   }, [artists, showAll]);
 
