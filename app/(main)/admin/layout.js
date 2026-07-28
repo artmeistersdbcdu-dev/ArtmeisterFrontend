@@ -6,11 +6,17 @@ import { canModerate } from "@/lib/roles";
 
 export default function layout({ children }) {
   const user = useAuthStore((state) => state.user);
+  const hasHydrated = useAuthStore((state) => state._hasHydrated);
   const router = useRouter();
 
   useEffect(() => {
-    if (user && !canModerate(user)) router.push("/");
-  }, [user]);
+    if (!hasHydrated) return;
+    if (!user) {
+      router.push("/sign-in");
+      return;
+    }
+    if (!canModerate(user)) router.push("/");
+  }, [user, hasHydrated]);
 
   return <>{children}</>;
 }

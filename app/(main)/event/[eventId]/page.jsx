@@ -90,6 +90,11 @@ export default function EventDetail() {
       toast.error("Please Login First");
       return;
     }
+
+    if (!user?.Username?.Valid) {
+     router.push(`/onboarding`);
+      return;
+    }
     registerEventFn(eventId);
   };
   useEffect(() => {

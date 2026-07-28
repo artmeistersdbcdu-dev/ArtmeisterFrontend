@@ -77,6 +77,10 @@ const CreateArt = ({ artid }) => {
   } = useFetch(updateArt);
 
   useEffect(() => {
+    if (user && !user?.Username?.Valid) {
+      router.push(`/onboarding`);
+      return;
+    }
     setIsBanned(user?.Status !== "approved");
   }, [user]);
 
