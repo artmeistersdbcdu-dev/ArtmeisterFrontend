@@ -56,7 +56,7 @@ useEffect(() => {
             <div className="h-px w-12 bg-content/20" />
           </div>
 
-          <h2 className="font-heading font-bold text-4xl">Meet Our Creators</h2>
+          <h2 className="font-heading text-red-700 font-bold text-4xl">Meet Our Creators</h2>
         </div>
       </div>
 

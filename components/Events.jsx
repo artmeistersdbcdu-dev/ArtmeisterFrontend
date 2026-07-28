@@ -33,7 +33,7 @@ export const Events = () => {
       <div className="flex justify-between items-end mb-12">
         <div>
           <div className="flex items-center gap-4 mb-3">
-            <span className="text-accent font-semibold tracking-widest text-sm uppercase">
+            <span className="text-muted-foreground font-semibold tracking-widest text-sm uppercase">
               UPCOMING EVENTS
             </span>
 
@@ -47,7 +47,7 @@ export const Events = () => {
 
         <Link
           href="/event"
-          className="text-accent hover:text-red-400 items-center gap-2 font-medium group transition-colors hidden sm:flex"
+          className="text-red-600 hover:text-red-400 items-center gap-2 font-medium group transition-colors hidden sm:flex"
         >
           VIEW ALL EVENTS
           <MoveRight

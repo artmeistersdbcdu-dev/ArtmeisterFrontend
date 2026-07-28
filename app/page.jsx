@@ -9,6 +9,7 @@ import gsap, { SplitText } from "gsap/all";
 import { Artist } from "@/components/Artist";
 import { Events } from "@/components/Events";
 import { Navbar } from "@/components/Navbar";
+import Art from "@/components/Art";
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
              <Navbar />
             <HeroSection />
             <About />
+            <Art/>
             <Artist />
             <Events />
             <Footer />

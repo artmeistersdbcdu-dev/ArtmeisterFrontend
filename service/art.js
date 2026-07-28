@@ -26,12 +26,13 @@ export const deleteArt = (id) => {
     method: "DELETE",
   });
 };
-export const likeArt = () => {};
-export const saveArt = () => {};
+
 export const updateArt = (id, data) => {
   return api(`/art/${id}`, {
     method: "PATCH",
-
     body: JSON.stringify(data),
   });
 };
+export const getLatestArt=()=>{
+    return api(`/art/latest`);
+}
