@@ -36,7 +36,7 @@ useEffect(() => {
     setArtists(sorted);
   }
 }, [artistsRes]);  const displayedArtists = useMemo(() => {
-    return showAll ? artists : artists.slice(0, 7);
+    return showAll ? artists : artists.slice(0, 9);
   }, [artists, showAll]);
 
   const hasMore = artists.length > displayedArtists.length;

@@ -40,14 +40,14 @@ export const Events = () => {
             <div className="h-px w-12 bg-accent/50"></div>
           </div>
 
-          <h2 className="font-heading font-bold text-4xl text-red-500">
+          <h2 className="font-heading font-bold text-4xl text-red-700">
             What's Happening
           </h2>
         </div>
 
         <Link
           href="/event"
-          className="text-red-600 hover:text-red-400 items-center gap-2 font-medium group transition-colors hidden sm:flex"
+          className="text-red-700 hover:text-red-400 items-center gap-2 font-medium group transition-colors hidden sm:flex"
         >
           VIEW ALL EVENTS
           <MoveRight
