@@ -61,10 +61,6 @@ export default function ArtistProfile() {
   const hasFetchedProfile = useRef(false);
 
   useEffect(() => {
-    if (hasHydrated && !user) {
-      router.push("/sign-in");
-      return;
-    }
     if (!usrId || !hasHydrated) return;
 
     if (isUserProfile) {
