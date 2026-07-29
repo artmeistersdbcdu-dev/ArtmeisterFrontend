@@ -134,7 +134,7 @@ export default function ArtPage() {
   }
 
   return (
-    <main className="min-h-screen bg-frosty text-content selection:bg-accent pb-20 pt-8 px-6 md:px-12">
+    <main className="min-h-screen  text-content selection:bg-accent pb-20 pt-8 px-6 md:px-12">
       <div className="max-w-7xl mx-auto">
         <Link
           href={`/u/${art?.data?.UserID}`}
@@ -147,19 +147,11 @@ export default function ArtPage() {
           Back to Artist Profile
         </Link>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* LEFT SIDE - Artwork */}
-          <div className="md:col-span-2 glass rounded-3xl overflow-hidden relative border border-overlay/5 group min-h-[500px] flex items-center justify-center bg-frosty/40">
-            {/* Action Buttons */}
-
-            {/* Artwork Image */}
-            <div className="md:col-span-2 glass rounded-3xl overflow-hidden relative border border-overlay/5 group min-h-[500px] bg-frosty/40">
-              {/* Action Buttons */}
+        <div className="flex flex-col md:flex-row gap-6">
+          <div className="md:w-2/3 rounded-3xl overflow-hidden relative">
               <div className="absolute top-6 right-6 z-20 flex gap-3">
-                {/* Artist Actions */}
                 {role === "artist" && (
                   <>
-                    {/* Edit */}
                     <Link
                       href={`/art/create?id=${artId}`}
                       className="w-12 h-12 flex items-center justify-center rounded-full bg-frosty/50 backdrop-blur-md border border-overlay/10 hover:bg-overlay/10 transition-all"
@@ -170,7 +162,6 @@ export default function ArtPage() {
                       />
                     </Link>
 
-                    {/* Delete */}
                     <AlertDialog>
                       <AlertDialogTrigger asChild>
                         <button className="w-12 h-12 flex items-center justify-center rounded-full bg-red-500/20 backdrop-blur-md border border-red-500/30 hover:bg-red-500/30 transition-all">
@@ -205,11 +196,8 @@ export default function ArtPage() {
                     </AlertDialog>
                   </>
                 )}
-
-                {/* Admin Actions */}
                 {canModerate(user) && (
                   <>
-                    {/* Approve */}
                     {(art?.data?.Status === "pending" ||
                       art?.data?.Status === "banned") && (
                       <button
@@ -225,7 +213,7 @@ export default function ArtPage() {
                       </button>
                     )}
 
-                    {/* Reject */}
+
                     {(art?.data?.Status === "pending" ||
                       art?.data?.Status === "approved") && (
                       <button
@@ -243,20 +231,15 @@ export default function ArtPage() {
                   </>
                 )}
               </div>
-
-              {/* Image Wrapper */}
-              <div className="w-full h-full rounded-3xl overflow-hidden flex items-center justify-center">
+              <div className="w-full rounded-3xl overflow-hidden leading-none">
                 <img
                   src={art?.data?.Image}
                   alt={art?.data?.Name}
-                  className="w-full h-auto max-h-[90vh] object-contain transition-transform duration-700 group-hover:scale-[1.02]"
+                  className="block w-full h-auto max-h-[90vh] object-contain transition-transform duration-700 group-hover:scale-[1.02]"
                 />
               </div>
             </div>
-          </div>
-
-          {/* RIGHT SIDE */}
-          <div className="flex flex-col gap-6">
+          <div className="md:w-1/3 flex flex-col gap-6">
             {/* About Artwork */}
             <div className="glass rounded-3xl p-8 border border-overlay/5 shadow-sm">
               <h1 className="text-5xl md:text-6xl font-bold leading-tight mb-6 tracking-tight">

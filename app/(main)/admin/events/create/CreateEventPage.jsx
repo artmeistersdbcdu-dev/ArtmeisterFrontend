@@ -11,9 +11,12 @@ import { upload } from "@/service/upload";
 import { toast } from "sonner";
 import { useAuthStore } from "@/store/user";
 import { canModerate } from "@/lib/roles";
+import CropModal from "@/components/CropModal";
 
-const ImageInput = ({ label, inputRef, existingImage, onFileChange }) => {
+const ImageInput = ({ label, inputRef, existingImage, onFileChange, cropShape }) => {
   const [preview, setPreview] = useState(null);
+  const [cropFile, setCropFile] = useState(null);
+  const [showCrop, setShowCrop] = useState(false);
 
   useEffect(() => {
     if (existingImage) {
@@ -25,15 +28,34 @@ const ImageInput = ({ label, inputRef, existingImage, onFileChange }) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
+    setCropFile(file);
+    setShowCrop(true);
+  };
+
+  const handleCropComplete = (blob) => {
+    const file = cropFile;
+    const croppedFile = new File([blob], file.name, { type: "image/jpeg" });
+
     if (preview && preview.startsWith("blob:")) {
       URL.revokeObjectURL(preview);
     }
 
-    const url = URL.createObjectURL(file);
+    const url = URL.createObjectURL(croppedFile);
     setPreview(url);
+    setShowCrop(false);
+    setCropFile(null);
 
-    onFileChange?.(file);
+    onFileChange?.(croppedFile);
   };
+
+  const handleCancelCrop = () => {
+    setShowCrop(false);
+    setCropFile(null);
+    if (inputRef.current) {
+      inputRef.current.value = "";
+    }
+  };
+
   const handleRemove = () => {
     if (preview && preview.startsWith("blob:")) {
       URL.revokeObjectURL(preview);
@@ -44,6 +66,8 @@ const ImageInput = ({ label, inputRef, existingImage, onFileChange }) => {
     }
     onFileChange?.(null);
   };
+
+  const isRound = cropShape === "round";
 
   return (
     <div className="space-y-2">
@@ -57,24 +81,49 @@ const ImageInput = ({ label, inputRef, existingImage, onFileChange }) => {
         className="hidden"
       />
 
+      <CropModal
+        open={showCrop}
+        image={cropFile ? URL.createObjectURL(cropFile) : undefined}
+        cropShape={cropShape ?? "rect"}
+        aspect={isRound ? 1 : 16 / 9}
+        onCropComplete={handleCropComplete}
+        onCancel={handleCancelCrop}
+      />
+
       {preview ? (
-        <div className="relative w-full rounded-xl overflow-hidden border border-overlay/10">
-          <img src={preview} className="w-full max-h-48 object-cover" />
-
-          <div className="absolute top-2 right-2 flex gap-2">
-            <button type="button" onClick={() => inputRef.current?.click()}>
-              Change
-            </button>
-
-            <button type="button" onClick={handleRemove}>
-              Remove
-            </button>
-          </div>
+        <div className={`relative ${isRound ? 'flex justify-center' : 'w-full'}`}>
+          {isRound ? (
+            <div className="relative group">
+              <div className="w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden border-4 border-overlay/10 mx-auto">
+                <img src={preview} className="w-full h-full object-cover" />
+              </div>
+              <div className="absolute top-2 right-2 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                <button type="button" onClick={() => inputRef.current?.click()} className="text-xs bg-black/60 text-white px-2 py-1 rounded">
+                  Change
+                </button>
+                <button type="button" onClick={handleRemove} className="text-xs bg-black/60 text-white px-2 py-1 rounded">
+                  Remove
+                </button>
+              </div>
+            </div>
+          ) : (
+            <div className="relative w-full rounded-xl overflow-hidden border border-overlay/10">
+              <img src={preview} className="w-full max-h-48 object-cover" />
+              <div className="absolute top-2 right-2 flex gap-2">
+                <button type="button" onClick={() => inputRef.current?.click()}>
+                  Change
+                </button>
+                <button type="button" onClick={handleRemove}>
+                  Remove
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       ) : (
         <div
           onClick={() => inputRef.current?.click()}
-          className="w-full bg-overlay/5 border border-overlay/10 border-dashed rounded-xl px-4 py-6 text-center cursor-pointer"
+          className={`${isRound ? 'w-40 h-40 md:w-48 md:h-48 rounded-full mx-auto' : 'w-full rounded-xl'} bg-overlay/5 border border-overlay/10 border-dashed px-4 py-6 text-center cursor-pointer flex items-center justify-center`}
         >
           <p className="text-content/40 text-sm">Click to upload image</p>
         </div>
@@ -138,8 +187,8 @@ const CreateEventPage = ({ id }) => {
       let image = "";
       let bannerImage = "";
       try {
-        if (logoRef?.current?.files?.[0]) {
-          const logoImgRes = await upload(logoRef.current.files[0]);
+        if (logoFile) {
+          const logoImgRes = await upload(logoFile);
           if (!logoImgRes?.success) {
             toast.error("Image upload error");
             return;
@@ -147,8 +196,8 @@ const CreateEventPage = ({ id }) => {
           image = logoImgRes?.url;
         }
 
-        if (bannerRef?.current?.files?.[0]) {
-          const bannerImgRes = await upload(bannerRef.current.files[0]);
+        if (bannerFile) {
+          const bannerImgRes = await upload(bannerFile);
           if (!bannerImgRes?.success) {
             toast.error("Image upload error");
             return;
@@ -186,15 +235,23 @@ const CreateEventPage = ({ id }) => {
         toast.error("Image size should be less than 5 MB");
       }
     }
-    const bannerUrlRes = await upload(bannerRef.current?.files[0]);
-    if (!bannerUrlRes?.success) {
-      toast.error("Image Size Should be less than 5 MB");
-      return;
+    let logoUrl = "";
+    let bannerUrl = "";
+    if (bannerFile) {
+      const res = await upload(bannerFile);
+      if (!res?.success) {
+        toast.error("Image Size Should be less than 5 MB");
+        return;
+      }
+      bannerUrl = res?.url;
     }
-    const logoUrlRes = await upload(logoRef.current?.files[0]);
-    if (!logoUrlRes?.success) {
-      toast.error("Image Size Should be less than 5 MB");
-      return;
+    if (logoFile) {
+      const res = await upload(logoFile);
+      if (!res?.success) {
+        toast.error("Image Size Should be less than 5 MB");
+        return;
+      }
+      logoUrl = res?.url;
     }
     const formData = new FormData();
     formData.append("name", data.name);
@@ -202,8 +259,8 @@ const CreateEventPage = ({ id }) => {
     formData.append("venue", data.venue);
     formData.append("status", data.status);
     formData.append("date", data.date);
-    formData.append("LogoUrl", logoUrlRes?.url);
-    formData.append("bannerUrl", bannerUrlRes?.url);
+    formData.append("LogoUrl", logoUrl);
+    formData.append("bannerUrl", bannerUrl);
     createEventFn(formData);
   };
   useEffect(() => {
@@ -231,8 +288,8 @@ const CreateEventPage = ({ id }) => {
           ? eventDetails.EventDate.split("T")[0]
           : "",
       });
-      setBannerFile(eventDetails?.BannerImage);
-      setLogoFile(eventDetails?.LogoImage);
+      setBannerFile(null);
+      setLogoFile(null);
     }
   }, [Event, reset]);
   useEffect(() => {
@@ -367,6 +424,7 @@ const CreateEventPage = ({ id }) => {
           label="Event Logo"
           onFileChange={setLogoFile}
           inputRef={logoRef}
+          cropShape="round"
           existingImage={Event?.Data?.Image?.String}
         />
 
