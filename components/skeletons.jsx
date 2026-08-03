@@ -389,3 +389,47 @@ function ArtistCardSkeleton() {
     </div>
   );
 }
+
+/* ─── Art Section Skeleton (Homepage) ─── */
+export function ArtSectionSkeleton() {
+  // Varying heights to mimic different art image aspect ratios
+  const cards = [340, 280, 360, 300, 320];
+
+  return (
+    <section id="arts" className="max-w-7xl mx-auto px-6 md:px-12 space-y-10">
+      {/* Header */}
+      <div className="flex justify-between items-end mb-12">
+        <div>
+          <div className="flex items-center gap-4 mb-3">
+            <Skeleton className="h-4 w-24" />
+            <Skeleton className="h-px w-12" />
+          </div>
+          <Skeleton className="h-10 w-60" />
+        </div>
+      </div>
+
+      {/* Art Cards Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {cards.map((h, i) => (
+          <div
+            key={i}
+            className="break-inside-avoid overflow-hidden rounded-2xl relative"
+          >
+            <Skeleton className="w-full rounded-2xl" style={{ height: h }} />
+            {/* Overlay text placeholders */}
+            <div className="absolute bottom-0 left-0 right-0 p-3 space-y-1">
+              <Skeleton className="h-5 w-3/4 rounded" />
+              <Skeleton className="h-3 w-full rounded" />
+            </div>
+          </div>
+        ))}
+
+        {/* Explore Gallery link placeholder */}
+        <div className="flex items-center justify-center gap-2 rounded-2xl border border-dashed border-overlay/20 py-7">
+          <Skeleton className="h-5 w-32 rounded" />
+          <Skeleton className="h-5 w-5 rounded" />
+        </div>
+      </div>
+    </section>
+  );
+}

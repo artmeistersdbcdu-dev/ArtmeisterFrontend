@@ -4,6 +4,7 @@ import useFetch from "@/hooks/useFetch";
 import { getLatestArt } from "@/service/art";
 import { useEffect } from "react";
 import { useState } from "react";
+import { ArtSectionSkeleton } from "./skeletons";
 import ArtCard from "./ArtCard";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
@@ -21,9 +22,7 @@ const Art = () => {
     setArts(artRes?.Data);
   }, [artRes]);
   if (loading) {
-    return (
-      <div className="w-full flex items-center justify-center">Loading...</div>
-    );
+    return <ArtSectionSkeleton />;
   }
   if (!artRes?.Success) {
     return (
